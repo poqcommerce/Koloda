@@ -365,7 +365,11 @@ public class KolodaView: UIView, DraggableCardDelegate {
     }
     
     func card(cardWasTapped card: DraggableCardView) {
-        let index = currentCardNumber + visibleCards.indexOf(card)!
+        guard let cardIndex: Int = visibleCards.indexOf(card) else {
+            return
+        }
+
+        let index = currentCardNumber + cardIndex
         
         delegate?.koloda(self, didSelectCardAtIndex: UInt(index))
     }
