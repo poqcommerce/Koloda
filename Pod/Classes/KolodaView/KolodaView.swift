@@ -232,7 +232,11 @@ open class KolodaView: UIView, DraggableCardDelegate {
         scale.width = initialFrame.width / finalFrame.width
         scale.height = initialFrame.height / finalFrame.height
 
-        return (finalFrame, scale)
+        if #available(iOS 11, *) {
+            return (initialFrame, scale)
+        } else {
+            return (finalFrame, scale)
+        }
     }
     
     fileprivate func moveOtherCardsWithFinishPercent(_ percent: CGFloat) {
